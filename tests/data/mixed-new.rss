@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0">
+  <channel>
+    <title>RSS Test Feed</title>
+    <link>https://nitschke.org</link>
+    <description>Example RSS file to test collection and archival of feeds</description>
+    <docs>http://www.rssboard.org/rss-specification</docs>
+    <item>
+      <title>Seventh example item with guid</title>
+      <description>
+	This is the seventh item of a simulated blog history that was
+	used to generate the example feed, assuming that there are guids sometimes...
+      </description>
+      <guid isPermalink="False">nitschke.org:0e286f9e-a646-4b8a-9d75-a44db5096449</guid>
+    </item>
+    <item>
+      <title>Sixth example item without guid</title>
+      <description>
+	This is the sixth item of a simulated blog history that was
+	used to generate the example feed, assuming that there are guids sometimes...
+      </description>
+      <guid isPermalink="False">nitschke.org:68ce11e9-9794-405c-a3a2-6e8efa435f04</guid>
+    </item>
+
+    <item>
+      <title>Fifth example item without guid</title>
+      <description>
+	This is the fifth item of a simulated blog history that was
+	used to generate the example feed, assuming that there are guids sometimes...
+      </description>
+    </item>
+    <item>
+      <title>Fourth example item without guid</title>
+      <description>
+	This is the fourth item of a simulated blog history that was
+	used to generate the example feed, assuming that there are guids...
+      </description>
+    </item>
+    <item>
+      <title>Third example item with guid</title>
+      <description>
+	This is the third item of a simulated blog history that was
+	used to generate the example feed, assuming that there are guids sometimes...
+      </description>
+      <guid isPermalink="False">nitschke.org:a610d260-c626-4ccd-90a3-fad18fbfc8ed</guid>
+    </item>
+  </channel> 
+</rss>
