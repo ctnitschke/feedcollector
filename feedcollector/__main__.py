@@ -8,6 +8,7 @@ from email.utils import mktime_tz, parsedate_tz
 import hashlib
 import json
 import os
+import urllib
 
 try:
     # Check if lxml is present (preferred for nicer namespace handling)
@@ -22,11 +23,7 @@ import requests
 from . import merge_rss_feeds
 
 def main():
-    try:
-        confdir = os.environ['XDG_CONFIG_HOME']
-    except KeyError:
-        confdir = os.path.join(os.environ['HOME'], '.config')
-
+    
     try:
         datadir = os.path.join(os.environ['XDG_DATA_HOME'], 'feedcollector')
     except KeyError:
@@ -34,32 +31,40 @@ def main():
 
     if not os.path.isdir(datadir):
         os.mkdir(datadir)
-        
-    config = configparser.ConfigParser()
 
-    if os.path.isfile('feedcollector.conf'):
-        config.read('feedcollector.conf')
-    elif os.path.isfile(os.path.join(confdir, 'feedcollector.conf')):
-        config.read(os.path.join(confdir, 'feedcollector.conf'))
+    if os.path.isfile('feedcollector.opml'):
+        config = ET.parse('feedcollector.opml')
+    elif os.path.isfile(os.path.join(datadir, 'feedcollector.opml')):
+        config = ET.parse(os.path.join(datadir, 'feedcollector.opml'))
 
-    for feed in config.sections():
-        url = config.get(feed, 'url')
-        feed_type = config.get(feed, 'type')
+    for feed in config.findall('.//outline[@xmlUrl]'):
+        url = feed.attrib['xmlUrl']
         
         resp = requests.get(url)
-        
-        if feed_type == 'rss':
-            online_feed_tree = ET.fromstring(resp.content)
 
-            local_feed_filename = os.path.join(datadir, feed + '.rss')
+        try:
+            online_feed_tree = ET.ElementTree(ET.fromstring(resp.content))
+            feed_type = ''
+            root_tag = online_feed_tree.getroot().tag
+        
+            if 'rss' in root_tag.lower() or 'rdf' in root_tag.lower():
+                feed_type = 'rss'
+            elif 'feed' in root_tag.lower():
+                feed_type = 'atom'
+        except ET.ParseError:
+            feed_type = 'json'
+            
+        if feed_type == 'rss':
+            feed_url_parsed = urllib.parse.urlparse(url)
+            feedname = feed_url_parsed.netloc + '-' + os.path.basename(feed_url_parsed.path)
+            local_feed_filename = os.path.join(datadir, feedname + '.rss')
 
             if not os.path.isfile(local_feed_filename):
-                ET.ElementTree(online_feed_tree).write(local_feed_filename, encoding='utf-8')
+                online_feed_tree.write(local_feed_filename, encoding='utf-8')
             else:
                 local_feed_tree = ET.parse(local_feed_filename)
-
                 updated_feed_tree = merge_rss_feeds(online_feed_tree, local_feed_tree)
-                ET.ElementTree(updated_feed_tree).write(local_feed_filename, encoding='utf-8')
+                updated_feed_tree.write(local_feed_filename, encoding='utf-8')
 
 if __name__ == '__main__':
     main()

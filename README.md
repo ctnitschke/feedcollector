@@ -10,7 +10,6 @@ changes in config etc., so use at your own risk.
 
 ## Roadmap
 
-- Import feeds from OPML rather than from an .ini-style file
 - Support for Atom feeds
 - Support for JSON feeds
 - Feed type discovery
