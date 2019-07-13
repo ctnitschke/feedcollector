@@ -1,15 +1,21 @@
 # Feedcollector
 
-This is a simple tool to archive feed contents. It downloads feed files
-and, if called repeatedly, appends new content while keeping old entries.
+This is a simple tool to archive feed contents. It downloads feed
+files and, if called repeatedly, appends new content while keeping old
+entries.
 
-Currently, only RSS feeds are supported, and because of directory naming
-conventions, it only runs on Linux, but that might change in the future.
-The tool may experience erratic bursts of heavy development, involving harsh
-changes in config etc., so use at your own risk.
+Currently, only RSS feeds from the RSS-2.0 family are supported, which
+is sufficient for my particular usecase. Extending support to other
+feed types is planned. Furthermore, because of directory naming
+conventions, the feedcollector tool only runs on Linux for now, but
+that might change in the future.
+
+The tool may experience erratic bursts of heavy development, involving
+harsh changes in config etc., so use at your own risk.
 
 ## Roadmap
 
+- Support for RSS-1.0 family feeds
 - Support for Atom feeds
 - Support for JSON feeds
 - Feed type discovery
