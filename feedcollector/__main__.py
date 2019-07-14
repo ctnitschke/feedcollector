@@ -20,6 +20,7 @@ except ImportError:
 import requests
 
 from . import rss
+from . import rdf
 
 def main():
     
@@ -40,14 +41,16 @@ def main():
         url = feed.attrib['xmlUrl']
         
         resp = requests.get(url)
-
+        
         try:
             online_feed_tree = ET.ElementTree(ET.fromstring(resp.content))
             feed_type = ''
             root_tag = online_feed_tree.getroot().tag
-        
-            if 'rss' in root_tag.lower() or 'rdf' in root_tag.lower():
+
+            if 'rss' in root_tag.lower():
                 feed_type = 'rss'
+            elif 'rdf' in root_tag.lower():
+                feed_type = 'rdf'
             elif 'feed' in root_tag.lower():
                 feed_type = 'atom'
         except ET.ParseError:
@@ -63,6 +66,18 @@ def main():
             else:
                 local_feed_tree = ET.parse(local_feed_filename)
                 updated_feed_tree = rss.merge_feeds(online_feed_tree, local_feed_tree)
+                updated_feed_tree.write(local_feed_filename, encoding='utf-8')
+
+        elif feed_type == 'rdf':
+            feed_url_parsed = urllib.parse.urlparse(url)
+            feedname = feed_url_parsed.netloc + '-' + os.path.basename(feed_url_parsed.path)
+            local_feed_filename = os.path.join(datadir, feedname + '.rss')
+
+            if not os.path.isfile(local_feed_filename):
+                online_feed_tree.write(local_feed_filename, encoding='utf-8')
+            else:
+                local_feed_tree = ET.parse(local_feed_filename)
+                updated_feed_tree = rdf.merge_feeds(online_feed_tree, local_feed_tree)
                 updated_feed_tree.write(local_feed_filename, encoding='utf-8')
 
 if __name__ == '__main__':
