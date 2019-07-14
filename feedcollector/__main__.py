@@ -19,8 +19,7 @@ except ImportError:
 
 import requests
 
-
-from . import merge_rss_feeds
+from . import rss
 
 def main():
     
@@ -63,7 +62,7 @@ def main():
                 online_feed_tree.write(local_feed_filename, encoding='utf-8')
             else:
                 local_feed_tree = ET.parse(local_feed_filename)
-                updated_feed_tree = merge_rss_feeds(online_feed_tree, local_feed_tree)
+                updated_feed_tree = rss.merge_feeds(online_feed_tree, local_feed_tree)
                 updated_feed_tree.write(local_feed_filename, encoding='utf-8')
 
 if __name__ == '__main__':
