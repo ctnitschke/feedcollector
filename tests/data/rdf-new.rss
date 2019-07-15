@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+  xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+  xmlns="http://purl.org/rss/1.0/"
+  >
+  <channel rdf:about="https://nitschke.org">
+    <title>RDF Test Feed</title>
+    <link>https://nitschke.org</link>
+    <description>
+      Example RSS file to test collection and archival of feeds
+    </description>
+
+    <items>
+      <rdf:Seq>
+	<rdf:li rdf:resource="https://nitschke.org/feed-examples/seventh_item.html"/>
+	<rdf:li rdf:resource="https://nitschke.org/feed-examples/sixth_item.html"/>
+	<rdf:li rdf:resource="https://nitschke.org/feed-examples/fifth_item.html"/>
+	<rdf:li rdf:resource="https://nitschke.org/feed-examples/fourth_item.html"/>
+	<rdf:li rdf:resource="https://nitschke.org/feed-examples/third_item.html"/>
+      </rdf:Seq>
+    </items>
+  </channel>
+  <item rdf:about="https://nitschke.org/feed-examples/seventh_item.html">
+    <title>Seventh RDF example</title>
+    <link>https://nitschke.org/feed-examples/seventh_item.html</link>
+    <description>
+      This is the seventh item of a simulated blog history that was
+      used to generate the example feed.
+    </description>
+  </item>
+  <item rdf:about="https://nitschke.org/feed-examples/sixth_item.html">
+    <title>Sixth RDF example</title>
+    <link>https://nitschke.org/feed-examples/sixth_item.html</link>
+    <description>
+      This is the sixth item of a simulated blog history that was
+      used to generate the example feed.
+    </description>
+  </item>
+  <item rdf:about="https://nitschke.org/feed-examples/fifth_item.html">
+    <title>Fifth RDF example</title>
+    <link>https://nitschke.org/feed-examples/fifth_item.html</link>
+    <description>
+      This is the fifth item of a simulated blog history that was
+      used to generate the example feed.
+    </description>
+  </item>
+  <item rdf:about="https://nitschke.org/feed-examples/fourth_item.html">
+    <title>Fourth RDF example</title>
+    <link>https://nitschke.org/feed-examples/fourth_item.html</link>
+    <description>
+      This is the fourth item of a simulated blog history that was
+      used to generate the example feed.
+    </description>
+  </item>
+  <item rdf:about="https://nitschke.org/feed-examples/third_item.html">
+    <title>Third RDF example</title>
+    <link>https://nitschke.org/feed-examples/third_item.html</link>
+    <description>
+      This is the third item of a simulated blog history that was
+      used to generate the example feed.
+    </description>
+  </item>
+    
+</rdf:RDF>
