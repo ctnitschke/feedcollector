@@ -1,7 +1,13 @@
 """
 Module for handling of RSS (as in RDF Site Summary) feeds
 """
-from .util import hash_xml_subtree
+try:
+    # Check if lxml is present (preferred for nicer namespace handling)
+    import lxml.etree as ET
+except ImportError:
+    # Else fall back to python etree
+    import xml.etree.ElementTree as ET
+
 
 def merge_feeds(new_root, old_root):
     """
@@ -19,8 +25,11 @@ def merge_feeds(new_root, old_root):
 
     new_item_ids = set()
 
+    new_root_elem = new_root.getroot()
+    
     new_item_seq = new_root.find((
         '{http://purl.org/rss/1.0/}channel/'
+        '{http://purl.org/rss/1.0/}items/'
         '{http://www.w3.org/1999/02/22-rdf-syntax-ns#}Seq'
     ))
     
@@ -31,7 +40,7 @@ def merge_feeds(new_root, old_root):
         item_id = item.attrib['{http://www.w3.org/1999/02/22-rdf-syntax-ns#}about']
 
         if item_id not in new_item_ids:
-            new_root.append(item)
+            new_root_elem.append(item)
             ET.SubElement(
                 new_item_seq,
                 '{http://www.w3.org/1999/02/22-rdf-syntax-ns#}li',
