@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='feedcollector',
-    version='0.1',
+    version='0.2',
     packages=['feedcollector'],
     include_package_data=True,
     zip_safe=False,
