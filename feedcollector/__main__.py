@@ -21,6 +21,7 @@ import requests
 
 from . import rss
 from . import rdf
+from . import util
 
 def main():
     
@@ -58,7 +59,7 @@ def main():
             
         if feed_type == 'rss':
             feed_url_parsed = urllib.parse.urlparse(url)
-            feedname = feed_url_parsed.netloc + '-' + os.path.basename(feed_url_parsed.path)
+            feedname = util.build_filename_from_url(url)
             local_feed_filename = os.path.join(datadir, feedname + '.rss')
 
             if not os.path.isfile(local_feed_filename):
@@ -70,7 +71,7 @@ def main():
 
         elif feed_type == 'rdf':
             feed_url_parsed = urllib.parse.urlparse(url)
-            feedname = feed_url_parsed.netloc + '-' + os.path.basename(feed_url_parsed.path)
+            feedname = util.build_filename_from_url(url)
             local_feed_filename = os.path.join(datadir, feedname + '.rss')
 
             if not os.path.isfile(local_feed_filename):
