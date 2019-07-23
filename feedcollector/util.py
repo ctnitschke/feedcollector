@@ -1,5 +1,8 @@
 """
-Utility functions
+Utility functions.
+
+:copyright: (c) 2019 by Christian Thomas Nitschke
+:license: Apache 2.0, see LICENSE for more details.
 """
 import hashlib
 import string

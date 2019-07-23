@@ -1,5 +1,8 @@
 """
 Module for handling of RSS (as in RDF Site Summary) feeds
+
+:copyright: (c) 2019 by Christian Thomas Nitschke
+:license: Apache 2.0, see LICENSE for more details.
 """
 try:
     # Check if lxml is present (preferred for nicer namespace handling)

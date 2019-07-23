@@ -1,6 +1,9 @@
 """
 A simple program to dump updates from the same online feed into the same
 file.
+
+:copyright: (c) 2019 by Christian Thomas Nitschke
+:license: Apache 2.0, see LICENSE for more details.
 """
 
 import configparser

@@ -1,6 +1,9 @@
 """
 Module for handling of RSS (as in Really Simple Syndication
-or Rich Site Summary) feeds
+or Rich Site Summary) feeds.
+
+:copyright: (c) 2019 by Christian Thomas Nitschke
+:license: Apache 2.0, see LICENSE for more details.
 """
 from .util import hash_xml_subtree
 
