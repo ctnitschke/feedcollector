@@ -13,6 +13,13 @@ that might change in the future.
 The tool may experience erratic bursts of heavy development, involving
 harsh changes in config etc., so use at your own risk.
 
+## Files
+
+- `$XDG_DATA_HOME/feedcollector/*.rss` - feed files
+- `$XDG_DATA_HOME/feedcollector/feedcollector.opml` - feed list
+
+`$XDG_DATA_HOME` usually is `~/.local/share/`, which also is the default.
+
 ## Roadmap
 
 - Support for Atom feeds
