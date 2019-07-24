@@ -20,6 +20,7 @@ except ImportError:
     # Else fall back to python etree
     import xml.etree.ElementTree as ET
 
+from appdirs import user_data_dir
 import requests
 
 from . import rss
@@ -28,10 +29,7 @@ from . import util
 
 def main():
     
-    try:
-        datadir = os.path.join(os.environ['XDG_DATA_HOME'], 'feedcollector')
-    except KeyError:
-        datadir = os.path.join(os.environ['HOME'], '.local', 'share', 'feedcollector')
+    datadir = user_data_dir('feedcollector', 'Christian Nitschke')
 
     if not os.path.isdir(datadir):
         os.mkdir(datadir)

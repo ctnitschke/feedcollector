@@ -8,6 +8,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'requests',
+        'appdirs',
     ],
     extras_require={
         'namespaces': 'lxml',

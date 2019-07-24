@@ -6,19 +6,17 @@ entries.
 
 Currently, only RSS feeds are supported, which
 is sufficient for my particular usecase. Extending support to other
-feed types is planned. Furthermore, because of directory naming
-conventions, the feedcollector tool only runs on Linux for now, but
-that might change in the future.
-
+feed types is planned. 
 The tool may experience erratic bursts of heavy development, involving
 harsh changes in config etc., so use at your own risk.
 
 ## Files
 
-- `$XDG_DATA_HOME/feedcollector/*.rss` - feed files
-- `$XDG_DATA_HOME/feedcollector/feedcollector.opml` - feed list
+- `<APP_DATA_DIR>/feedcollector/*.rss` - feed files
+- `<APP_DATA_DIR>/feedcollector/feedcollector.opml` - feed list
 
-`$XDG_DATA_HOME` usually is `~/.local/share/`, which also is the default.
+On Linux systems (which I mostly use), `<APP_DATA_DIR>` is usually set to
+`~/.local/share/` or set by the environment variable `XDG_DATA_DIR`.
 
 ## Roadmap
 
